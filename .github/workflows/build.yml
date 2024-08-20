@@ -241,7 +241,7 @@ jobs:
 
       - name: Copy and pack Cuda runtime
         id: pack_cuda_runtime
-        if: ${{ ( github.event_name == 'push' && github.ref == 'refs/heads/master' && matrix.build == 'cuda12' ) || github.event.inputs.create_release == 'true' }}
+        if: ${{ ( github.event_name == 'push' && github.ref == 'refs/heads/master' ) || github.event.inputs.create_release == 'true' && matrix.build == 'cuda12' }}
         run: |
           echo "Cuda install location: ${{steps.cuda-toolkit.outputs.CUDA_PATH}}"
           $dst='.\build\bin\cudart\'
@@ -249,7 +249,7 @@ jobs:
           7z a cudart-sd-bin-win-cu12-x64.zip $dst\*
 
       - name: Upload Cuda runtime
-        if: ${{ ( github.event_name == 'push' && github.ref == 'refs/heads/master' && matrix.build == 'cuda12' ) || github.event.inputs.create_release == 'true' }}
+        if: ${{ ( github.event_name == 'push' && github.ref == 'refs/heads/master' ) || github.event.inputs.create_release == 'true' && matrix.build == 'cuda12' }}
         uses: actions/upload-artifact@v4
         with:
           name: sd-cudart-sd-bin-win-cu12-x64.zip
