@@ -228,12 +228,14 @@ jobs:
             echo "Exists at path $filePath"
             Copy-Item ggml/LICENSE .\build\bin\Release\ggml.txt
             Copy-Item LICENSE .\build\bin\Release\stable-diffusion.cpp.txt
-          } elseif (Test-Path ".\build\bin\stable-diffusion.dll") {
-          $filePath = ".\build\bin\*"
+          } elseif (Test-Path ".\build\bin\*") {
+            $filePath = ".\build\bin\*"
             echo "Exists at path $filePath"
             Copy-Item ggml/LICENSE .\build\bin\ggml.txt
             Copy-Item LICENSE .\build\bin\stable-diffusion.cpp.txt
           } else {
+            ls .\
+            ls .\build
             ls .\build\bin
             throw "Can't find stable-diffusion.dll"
           }
