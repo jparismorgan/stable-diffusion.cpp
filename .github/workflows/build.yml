@@ -166,6 +166,8 @@ jobs:
             defines: "-DSD_CUBLAS=ON -DSD_BUILD_SHARED_LIBS=OFF"
           - build: "rocm5.5"
             defines: '-G Ninja -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DSD_HIPBLAS=ON -DCMAKE_BUILD_TYPE=Release -DAMDGPU_TARGETS="gfx1100;gfx1102;gfx1030" -DSD_BUILD_SHARED_LIBS=OFF'
+          - build: 'vulkan'
+            defines: "-DSD_VULKAN=ON -DSD_BUILD_SHARED_LIBS=OFF"
     steps:
       - name: Clone
         id: checkout
